@@ -1,25 +1,24 @@
 package api.model;
 
-public class PersonV2 {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class PersonV2 extends PersonV1 {
 
-    private final PersonV1 personV1;
     private Name fullName;
 
     public PersonV2(Name fullName, int age) {
-        this.fullName = fullName;
-        this.personV1 = new PersonV1(fullName.getFirstName(), age);
-    }
-
-    public Name getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(Name fullName) {
+        super(fullName.getFirstName(), age);
         this.fullName = fullName;
     }
 
-    public int getAge() {
-        return personV1.getAge();
+
+    @JsonIgnore
+    @Override
+    public String getName() {
+        return super.getName();
     }
 }
