@@ -15,6 +15,15 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ErrorMessage> handleAllExceptions(Exception ex, WebRequest request) {
+        ErrorMessage errorDetails = new ErrorMessage(LocalDateTime.now(),
+                ex.getMessage(), request.getDescription(false), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+
+    }
+
     @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<ErrorMessage> handleUserNotFoundException(Exception exception, WebRequest request) {
         ErrorMessage errorDetails = new ErrorMessage(LocalDateTime.now(),
