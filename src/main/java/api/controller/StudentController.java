@@ -1,7 +1,6 @@
 package api.controller;
 
 
-import api.error.StudentNotFoundException;
 import api.model.Student;
 import api.model.list.StudentList;
 import api.service.StudentService;

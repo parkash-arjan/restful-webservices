@@ -1,6 +1,6 @@
 package api.service;
 
-import api.error.StudentNotFoundException;
+import api.error.NotFoundException;
 import api.model.Course;
 import api.model.Instructor;
 import api.model.Student;
@@ -34,7 +34,7 @@ public class StudentService {
 
     public Student getStudent(long id) {
         return studentList.stream().filter(student -> student.getId() == id).findFirst().orElseThrow(() ->
-                new StudentNotFoundException(String.format("Student not found with id %s", id)));
+                new NotFoundException(String.format("Student not found with id %s", id)));
     }
 
     public StudentList getStudents() {

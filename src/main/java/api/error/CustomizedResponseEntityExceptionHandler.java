@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CustomizedResponseEntityExceptionHandler {
 
-    @ExceptionHandler(StudentNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     public final ResponseEntity<ErrorMessage> handleUserNotFoundException(Exception exception, WebRequest request) {
         ErrorMessage errorDetails = new ErrorMessage(LocalDateTime.now(),
                 exception.getMessage(),
