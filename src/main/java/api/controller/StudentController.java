@@ -4,6 +4,7 @@ package api.controller;
 import api.model.Student;
 import api.model.list.StudentList;
 import api.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,7 +32,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
         Student createdStudent = studentService.createStudent(student.getName(), student.getEmail());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
