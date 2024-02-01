@@ -16,7 +16,7 @@ public class LinkedBeanController {
 
 
     @GetMapping("/linked-bean-list")
-    public List<LinkedBean> getSecureBeanList() {
+    public List<LinkedBean> getLinkedBeanList() {
 
         return List.of(
                 new LinkedBean(
@@ -30,14 +30,14 @@ public class LinkedBeanController {
     }
 
     @GetMapping("/linked-bean")
-    public EntityModel<LinkedBean> getBeanWithLink() {
+    public EntityModel<LinkedBean> getLinkedBean() {
         LinkedBean linkedBean = new LinkedBean(
                 "Alpha",
                 "alpha@beta.com"
         );
 
         EntityModel<LinkedBean> entityModel = EntityModel.of(linkedBean);
-        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).getSecureBeanList());
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).getLinkedBeanList());
         entityModel.add(link.withRel("linked-beans"));
         return entityModel;
     }
